@@ -7,7 +7,7 @@ export default class MoviesDAO{
             return
         }
         try{
-            movies = await conn.db(process.env.MOVIESREVIEWS_NV).collection('movies')
+            movies = await conn.db(process.env.MOVIEREVIEWS_NS).collection('movies')
         }
         catch(err){
             console.error(`unable to connect in MoviesDAO: ${err}`)
@@ -24,7 +24,7 @@ export default class MoviesDAO{
                     query = { $text: {$search: filters['title']}}
                 }
                 else if("rated" in filters){
-                    query = { "rated": {$eq:filtes['rated']}}
+                    query = { "rated": {$eq: filters['rated']}}
                 }
             }
             let cursor
